@@ -102,6 +102,11 @@
     },
     "tax_fee": {
       "type": "integer"
+    },
+    "address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address"
     }
   }
 }

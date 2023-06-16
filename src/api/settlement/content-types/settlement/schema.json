@@ -22,6 +22,12 @@
       "relation": "manyToOne",
       "target": "api::community.community",
       "inversedBy": "settlements"
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
+      "mappedBy": "settlement"
     }
   }
 }

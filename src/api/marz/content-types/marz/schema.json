@@ -28,6 +28,12 @@
       "relation": "manyToOne",
       "target": "api::country.country",
       "inversedBy": "marzs"
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
+      "mappedBy": "marz"
     }
   }
 }

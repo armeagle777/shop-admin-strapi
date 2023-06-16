@@ -22,6 +22,12 @@
       "relation": "oneToMany",
       "target": "api::marz.marz",
       "mappedBy": "country"
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
+      "mappedBy": "country"
     }
   }
 }

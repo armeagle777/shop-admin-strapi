@@ -28,6 +28,12 @@
       "relation": "oneToMany",
       "target": "api::settlement.settlement",
       "mappedBy": "community"
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
+      "mappedBy": "community"
     }
   }
 }

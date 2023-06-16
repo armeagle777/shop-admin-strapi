@@ -59,11 +59,11 @@
       "target": "api::order.order",
       "mappedBy": "customer"
     },
-    "Addresses": {
-      "type": "component",
-      "repeatable": true,
-      "component": "address.address",
-      "required": true
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
+      "mappedBy": "hatchakhvordnyer"
     }
   }
 }
