@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marzs",
+  "info": {
+    "singularName": "marz",
+    "pluralName": "marzs",
+    "displayName": "Marz",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "communities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::community.community",
+      "mappedBy": "marz"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "marzs"
+    }
+  }
+}

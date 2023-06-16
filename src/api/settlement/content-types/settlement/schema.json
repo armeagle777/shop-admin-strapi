@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "settlements",
+  "info": {
+    "singularName": "settlement",
+    "pluralName": "settlements",
+    "displayName": "Settlement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "community": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::community.community",
+      "inversedBy": "settlements"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "segments",
+  "info": {
+    "singularName": "segment",
+    "pluralName": "segments",
+    "displayName": "Հաճախորդի դասակարգեր",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "customers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::customer.customer",
+      "mappedBy": "segments"
+    }
+  }
+}

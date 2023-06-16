@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "Հաճախորդներ",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "phone_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "has_ordered": {
+      "type": "boolean",
+      "default": false
+    },
+    "latest_purchase": {
+      "type": "date"
+    },
+    "orders_count": {
+      "type": "integer"
+    },
+    "total_spent": {
+      "type": "integer"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "contacts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact",
+      "mappedBy": "customer"
+    },
+    "segments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::segment.segment",
+      "inversedBy": "customers"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "customer"
+    },
+    "Addresses": {
+      "type": "component",
+      "repeatable": true,
+      "component": "address.address",
+      "required": true
+    }
+  }
+}

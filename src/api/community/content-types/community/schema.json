@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "communities",
+  "info": {
+    "singularName": "community",
+    "pluralName": "communities",
+    "displayName": "Community",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "marz": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::marz.marz",
+      "inversedBy": "communities"
+    },
+    "settlements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::settlement.settlement",
+      "mappedBy": "community"
+    }
+  }
+}

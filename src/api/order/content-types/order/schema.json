@@ -1,0 +1,107 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Պատվերներ",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tracking_id": {
+      "type": "string",
+      "unique": true
+    },
+    "order_date": {
+      "type": "date"
+    },
+    "cancel_date": {
+      "type": "date"
+    },
+    "received_date": {
+      "type": "date"
+    },
+    "return_date": {
+      "type": "date"
+    },
+    "deliver_date": {
+      "type": "date"
+    },
+    "description": {
+      "type": "richtext",
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "net_cost": {
+      "type": "integer",
+      "required": true
+    },
+    "delivery_fees": {
+      "type": "integer"
+    },
+    "total_costs": {
+      "type": "integer"
+    },
+    "selling_price": {
+      "type": "integer"
+    },
+    "returned": {
+      "type": "boolean",
+      "default": false
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "orders"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "orders"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "orders"
+    },
+    "reference_url": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Status": {
+      "type": "enumeration",
+      "enum": [
+        "ORDERED",
+        "CANCELLED",
+        "AVAILABLE",
+        "DELIVERED",
+        "RETURNED"
+      ],
+      "default": "ORDERED"
+    },
+    "tax_fee": {
+      "type": "integer"
+    }
+  }
+}
