@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expenses",
+  "info": {
+    "singularName": "expense",
+    "pluralName": "expenses",
+    "displayName": "Expense",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "integer",
+      "required": true
+    },
+    "direction": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::expense-direction.expense-direction",
+      "inversedBy": "expenses"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    }
+  }
+}

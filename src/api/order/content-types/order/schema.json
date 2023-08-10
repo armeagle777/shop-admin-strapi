@@ -4,32 +4,29 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Պատվերներ",
+    "displayName": "Order",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "tracking_id": {
       "type": "string",
-      "unique": true
-    },
-    "order_date": {
-      "type": "date"
+      "unique": false
     },
     "cancel_date": {
       "type": "date"
     },
     "received_date": {
-      "type": "date"
+      "type": "datetime"
     },
     "return_date": {
       "type": "date"
     },
     "deliver_date": {
-      "type": "date"
+      "type": "datetime"
     },
     "description": {
       "type": "richtext",
@@ -43,18 +40,8 @@
       "type": "integer",
       "required": true
     },
-    "delivery_fees": {
-      "type": "integer"
-    },
-    "total_costs": {
-      "type": "integer"
-    },
     "selling_price": {
       "type": "integer"
-    },
-    "returned": {
-      "type": "boolean",
-      "default": false
     },
     "shop": {
       "type": "relation",
@@ -75,7 +62,7 @@
       "inversedBy": "orders"
     },
     "reference_url": {
-      "type": "string"
+      "type": "text"
     },
     "isActive": {
       "type": "boolean",
@@ -89,7 +76,7 @@
         "images"
       ]
     },
-    "Status": {
+    "status": {
       "type": "enumeration",
       "enum": [
         "ORDERED",
@@ -99,9 +86,6 @@
         "RETURNED"
       ],
       "default": "ORDERED"
-    },
-    "tax_fee": {
-      "type": "integer"
     },
     "address": {
       "type": "relation",

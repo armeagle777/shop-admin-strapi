@@ -4,7 +4,7 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "Կատեգորիաներ",
+    "displayName": "Categories",
     "description": ""
   },
   "options": {
@@ -35,6 +35,11 @@
         "audios"
       ],
       "pluginOptions": {}
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }

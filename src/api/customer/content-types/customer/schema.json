@@ -4,11 +4,11 @@
   "info": {
     "singularName": "customer",
     "pluralName": "customers",
-    "displayName": "Հաճախորդներ",
+    "displayName": "Customer",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -44,8 +44,7 @@
     "contacts": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::contact.contact",
-      "mappedBy": "customer"
+      "target": "api::contact.contact"
     },
     "segments": {
       "type": "relation",
@@ -62,8 +61,18 @@
     "addresses": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::address.address",
-      "mappedBy": "hatchakhvordnyer"
+      "target": "api::address.address"
+    },
+    "Avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

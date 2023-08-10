@@ -4,7 +4,7 @@
   "info": {
     "singularName": "contact",
     "pluralName": "contacts",
-    "displayName": "Հեռախոսահամարներ",
+    "displayName": "Contact",
     "description": ""
   },
   "options": {
@@ -16,12 +16,6 @@
       "type": "string",
       "required": true,
       "unique": false
-    },
-    "customer": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::customer.customer",
-      "inversedBy": "contacts"
     }
   }
 }

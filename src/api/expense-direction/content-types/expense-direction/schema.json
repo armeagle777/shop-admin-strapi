@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expense_directions",
+  "info": {
+    "singularName": "expense-direction",
+    "pluralName": "expense-directions",
+    "displayName": "ExpenseDirection",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "expenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::expense.expense",
+      "mappedBy": "direction"
+    }
+  }
+}
