@@ -61,7 +61,8 @@
     "addresses": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::address.address"
+      "target": "api::address.address",
+      "mappedBy": "customer"
     },
     "Avatar": {
       "type": "media",

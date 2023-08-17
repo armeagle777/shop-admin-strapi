@@ -46,6 +46,12 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "addresses"
     }
   }
 }
