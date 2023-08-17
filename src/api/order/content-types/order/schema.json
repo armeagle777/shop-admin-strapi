@@ -91,6 +91,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::address.address"
+    },
+    "order_date": {
+      "type": "date"
     }
   }
 }
