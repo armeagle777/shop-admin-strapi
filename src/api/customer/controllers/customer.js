@@ -99,19 +99,18 @@ module.exports = createCoreController(
     editCustomers: async (ctx, next) => {
       try {
         const { body, params } = ctx.request;
-        console.log("body.data::::::", body.data);
+        console.log("body::::::", body);
 
         const {
           image,
           first_name,
           last_name,
           phone,
-          address,
+          district,
           contacts,
           phone_code,
           phone_number,
         } = { ...body.data };
-        console.log("body.data::::::", body.data);
 
         const newCustomerData = {
           first_name,
@@ -137,7 +136,7 @@ module.exports = createCoreController(
 
         //Connecting new image Id
         if (image) {
-          newCustomerData.Avatar = { set: [image] };
+          newCustomerData.Avatar = image;
         }
 
         //creating new contacts and connecting to Customer
@@ -156,33 +155,33 @@ module.exports = createCoreController(
         }
 
         //Address
-        // if (address.district) {
-        //   const createdAddresses = await Promise.all(
-        //     [address].map(async (a) => {
-        //       const { district, street, index } = a;
-        //       const [countryId, marzId, communityId, settlementId] = district;
-        //       const newAddressData = {
-        //         country: +countryId,
-        //         marz: +marzId,
-        //         community: +communityId,
-        //         street: street,
-        //         index: index,
-        //       };
+        if (district) {
+          const createdAddresses = await Promise.all(
+            [address].map(async (a) => {
+              const { district, street, index } = a;
+              const [countryId, marzId, communityId, settlementId] = district;
+              const newAddressData = {
+                country: +countryId,
+                marz: +marzId,
+                community: +communityId,
+                street: street,
+                index: index,
+              };
 
-        //       if (settlementId) {
-        //         newAddressData.settlement = +settlementId;
-        //       }
+              if (settlementId) {
+                newAddressData.settlement = +settlementId;
+              }
 
-        //       return await strapi.entityService.create("api::address.address", {
-        //         data: newAddressData,
-        //       });
-        //     })
-        //   );
+              return await strapi.entityService.create("api::address.address", {
+                data: newAddressData,
+              });
+            })
+          );
 
-        //   newCustomerData.addresses = {
-        //     connect: createdAddresses.map((c) => c.id),
-        //   };
-        // }
+          newCustomerData.addresses = {
+            connect: createdAddresses.map((c) => c.id),
+          };
+        }
 
         const updatedCustomer = await strapi.entityService.update(
           "api::customer.customer",
