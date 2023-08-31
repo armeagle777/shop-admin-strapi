@@ -99,17 +99,18 @@ module.exports = createCoreController(
     editCustomers: async (ctx, next) => {
       try {
         const { body, params } = ctx.request;
-        console.log("body::::::", body);
 
         const {
           image,
           first_name,
           last_name,
-          phone,
-          district,
           contacts,
           phone_code,
           phone_number,
+          address_id,
+          district,
+          street,
+          index,
         } = { ...body.data };
 
         const newCustomerData = {
@@ -124,15 +125,11 @@ module.exports = createCoreController(
           {}
         );
 
-        console.log("existingCustomer::::::", existingCustomer);
-
         if (!existingCustomer) {
           return ctx.send({
             error: "Նման հաճախորդ  գոյություն չունի",
           });
         }
-        console.log("image::::::", image);
-        console.log("typeof image::::::", typeof image);
 
         //Connecting new image Id
         if (image) {
@@ -156,31 +153,28 @@ module.exports = createCoreController(
 
         //Address
         if (district) {
-          const createdAddresses = await Promise.all(
-            [address].map(async (a) => {
-              const { district, street, index } = a;
-              const [countryId, marzId, communityId, settlementId] = district;
-              const newAddressData = {
-                country: +countryId,
-                marz: +marzId,
-                community: +communityId,
-                street: street,
-                index: index,
-              };
-
-              if (settlementId) {
-                newAddressData.settlement = +settlementId;
-              }
-
-              return await strapi.entityService.create("api::address.address", {
-                data: newAddressData,
-              });
-            })
-          );
-
-          newCustomerData.addresses = {
-            connect: createdAddresses.map((c) => c.id),
+          const [countryId, marzId, communityId, settlementId] = district;
+          const newAddressData = {
+            country: +countryId,
+            marz: +marzId,
+            community: +communityId,
+            street: street,
+            index: index,
           };
+
+          if (settlementId) {
+            newAddressData.settlement = +settlementId;
+          }
+
+          await strapi.entityService.update(
+            "api::address.address",
+            address_id,
+            {
+              data: {
+                ...newAddressData,
+              },
+            }
+          );
         }
 
         const updatedCustomer = await strapi.entityService.update(
