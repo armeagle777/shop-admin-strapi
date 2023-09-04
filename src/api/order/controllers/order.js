@@ -41,9 +41,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       };
 
       if (newStatus === "CANCELLED") {
-        updateObj.cancel_date = new Date().toISOString();
+        updateObj.cancel_date = new Date();
       } else if (newStatus === "RETURNED") {
-        updateObj.return_date = new Date().toISOString();
+        updateObj.return_date = new Date();
       }
 
       await strapi.entityService.update("api::order.order", key, {

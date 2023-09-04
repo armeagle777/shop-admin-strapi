@@ -92,7 +92,7 @@ module.exports = createCoreController(
         );
         ctx.send(createdCustomer);
       } catch (error) {
-        console.log("error::::::", error.message);
+        console.log("error::::::>>", error.message);
         ctx.throw(403, error.message);
       }
     },
@@ -101,7 +101,6 @@ module.exports = createCoreController(
         const { body, params } = ctx.request;
 
         const {
-          image,
           first_name,
           last_name,
           contacts,
@@ -132,9 +131,9 @@ module.exports = createCoreController(
         }
 
         //Connecting new image Id
-        if (image) {
-          newCustomerData.Avatar = image;
-        }
+        // if (image) {
+        //   newCustomerData.Avatar = image;
+        // }
 
         //creating new contacts and connecting to Customer
         if (contacts) {
@@ -152,8 +151,8 @@ module.exports = createCoreController(
         }
 
         //Address
-        if (district) {
-          const [countryId, marzId, communityId, settlementId] = district;
+        const [countryId, marzId, communityId, settlementId] = district;
+        if (countryId !== null) {
           const newAddressData = {
             country: +countryId,
             marz: +marzId,
@@ -162,7 +161,7 @@ module.exports = createCoreController(
             index: index,
           };
 
-          if (settlementId) {
+          if (settlementId !== null) {
             newAddressData.settlement = +settlementId;
           }
 
@@ -188,7 +187,7 @@ module.exports = createCoreController(
         );
         ctx.send(updatedCustomer);
       } catch (error) {
-        console.log("error::::::", error.message);
+        console.log("error::::::<<<", error.message);
         ctx.throw(403, error.message);
       }
     },
