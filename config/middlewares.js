@@ -34,6 +34,7 @@ module.exports = [
       origin: "*",
     },
   },
+  // "strapi::cors",
   "strapi::poweredBy",
   "strapi::logger",
   "strapi::query",
