@@ -5,6 +5,7 @@
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
+const dayjs = require('dayjs')
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   makeOrderCanceled: async (ctx, next) => {
@@ -16,7 +17,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         ...record,
       };
       const newOrder = { ...rest };
-      if (images) {
+      if (images && images.data) {
+        
         newOrder.images = images.data.map((i) => i.id);
       }
       if (category) {
@@ -39,11 +41,11 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       const updateObj = {
         status: newStatus,
       };
-
+      const currentDate = dayjs(new Date()).format('YYYY-MM-DD');
       if (newStatus === "CANCELLED") {
-        updateObj.cancel_date = new Date();
+        updateObj.cancel_date = currentDate;
       } else if (newStatus === "RETURNED") {
-        updateObj.return_date = new Date();
+        updateObj.return_date = currentDate;
       }
 
       await strapi.entityService.update("api::order.order", key, {
