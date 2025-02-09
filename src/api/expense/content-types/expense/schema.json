@@ -30,6 +30,9 @@
     "expense_date": {
       "type": "date",
       "default": "2023-08-23"
+    },
+    "comment": {
+      "type": "string"
     }
   }
 }
