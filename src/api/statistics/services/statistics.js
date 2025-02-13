@@ -62,7 +62,7 @@ module.exports = () => ({
 
       const accessoryCharData = getCurrentYearAndPast11Months(
         accessoryExpenses,
-        accessoryExpenses
+        accessoryOrders
       );
 
       const nonAccessoryIncomes = nonAccessoryCharData.map(
