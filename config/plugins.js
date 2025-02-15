@@ -17,7 +17,7 @@ module.exports = ({ env }) => ({
   //     },
   //   },
   // },
-  upload:{},
+  upload: {},
   email: {
     config: {
       provider: "nodemailer",
@@ -34,6 +34,29 @@ module.exports = ({ env }) => ({
       settings: {
         defaultFrom: "lilit.sargsyan@rambler.ru",
         defaultReplyTo: "lilit.sargsyan@rambler.ru",
+      },
+    },
+  },
+  transformer: {
+    enabled: true,
+    config: {
+      responseTransforms: {
+        removeAttributesKey: true,
+        removeDataKey: true,
+      },
+      contentTypeFilter: {
+        mode: "allow",
+        uids: {
+          "api::customer.customer": true,
+        },
+        ids: {
+          slugify: true,
+        },
+      },
+      plugins: {
+        ids: {
+          slugify: true,
+        },
       },
     },
   },

@@ -4,4 +4,7 @@ module.exports = {
     maxLimit: 10000,
     withCount: true,
   },
+  // responses: {
+  //   privateAttributes: ["createdBy", "updatedBy"],
+  // },
 };

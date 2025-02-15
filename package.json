@@ -25,7 +25,8 @@
     "mysql2": "^3.3.3",
     "patch-package": "^7.0.0",
     "react-icons": "^4.9.0",
-    "strapi-plugin-duplicate-button": "^1.1.11"
+    "strapi-plugin-duplicate-button": "^1.1.11",
+    "strapi-plugin-transformer": "^3.1.2"
   },
   "author": {
     "name": "A Strapi developer"

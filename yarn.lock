@@ -9525,6 +9525,11 @@ strapi-plugin-duplicate-button@^1.1.11:
   resolved "https://registry.yarnpkg.com/strapi-plugin-duplicate-button/-/strapi-plugin-duplicate-button-1.1.11.tgz#6cc522b7553ddd60d5e119461fce231a4b98ede3"
   integrity sha512-IsHoVZEBQO8hwYRw2h/1HZGOsryh/u50DXqdAnuB6KeWm2xD47ocsbV4pFeBoDU65zutotzvyphyhYmZzIMfuw==
 
+strapi-plugin-transformer@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-transformer/-/strapi-plugin-transformer-3.1.2.tgz#c9676fb369baf009a7f321a44258609e52aef8aa"
+  integrity sha512-aRjWqrZJ2QcsSDqOE27xzzmDG1c+yg8o9yUb5zFhR94+4zbGxTpLQndelkWtzNaLv5s2HhExx1JyCn/F9GZPpQ==
+
 stream-chain@2.2.5, stream-chain@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/stream-chain/-/stream-chain-2.2.5.tgz#b30967e8f14ee033c5b9a19bbe8a2cba90ba0d09"

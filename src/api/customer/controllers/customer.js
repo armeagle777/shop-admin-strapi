@@ -191,5 +191,15 @@ module.exports = createCoreController(
         ctx.throw(403, error.message);
       }
     },
+    async search(ctx) {
+      try {
+        const data = await strapi
+          .service("api::customer.customer")
+          .search(ctx.request.query);
+        return data;
+      } catch (error) {
+        ctx.body = error;
+      }
+    },
   })
 );
