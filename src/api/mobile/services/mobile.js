@@ -1,6 +1,7 @@
 "use strict";
 const _ = require("lodash");
 
+const { getCurrentYearAndPast11Months } = require("../utils/helpers");
 const {
   nonAccessoryExpenseQueryOpt,
   nonAccessoryCustomersQueryOpt,
@@ -8,8 +9,7 @@ const {
   nonAccessorySurplusOrdersQueryOpt,
   accessoryOrdersQueryOpt,
   accessoryExpenseQueryOpt,
-} = require("../utils/constants");
-const { getCurrentYearAndPast11Months } = require("../utils/helpers");
+} = require("../../statistics/utils/constants");
 
 module.exports = () => ({
   async getHomepagePillsStatsData(query) {
@@ -64,11 +64,7 @@ module.exports = () => ({
         accessoryOrders
       );
 
-      const nonAccessoryIncomes = nonAccessoryCharData.map(
-        (monthData) => monthData["Զուտ եկամուտ"]
-      );
-
-      const meanIncome = _.mean(nonAccessoryIncomes);
+      const meanIncome = _.mean(nonAccessoryCharData.netIncomes);
 
       const nonAccessorySurplusOrders = await strapi.entityService.findMany(
         "api::order.order",
@@ -92,7 +88,6 @@ module.exports = () => ({
       };
     } catch (error) {
       console.log("error::::::", error);
-
       return null;
     }
   },
