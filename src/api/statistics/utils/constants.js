@@ -1,7 +1,7 @@
 const accessoryExpenseIds = [32, 39];
 const accessoryCategoryIds = [74];
 
-const nonAccessoryOrdersQueryOpt = {
+const ordersQueryOpt = {
   fields: ["status", "net_cost", "selling_price", "order_date"],
   filters: {
     category: {
@@ -18,24 +18,24 @@ const nonAccessoryOrdersQueryOpt = {
   },
 };
 
-const accessoryOrdersQueryOpt = {
-  fields: ["status", "net_cost", "selling_price", "order_date"],
-  filters: {
-    category: {
-      id: {
-        $in: accessoryCategoryIds,
-      },
-    },
-    status: {
-      $notIn: ["CANCELLED", "RETURNED"],
-    },
-    isActive: {
-      $eq: true,
-    },
-  },
-};
+// const accessoryOrdersQueryOpt = {
+//   fields: ["status", "net_cost", "selling_price", "order_date"],
+//   filters: {
+//     category: {
+//       id: {
+//         $in: accessoryCategoryIds,
+//       },
+//     },
+//     status: {
+//       $notIn: ["CANCELLED", "RETURNED"],
+//     },
+//     isActive: {
+//       $eq: true,
+//     },
+//   },
+// };
 
-const nonAccessorySurplusOrdersQueryOpt = {
+const surplusOrdersQueryOpt = {
   fields: ["net_cost"],
   filters: {
     category: {
@@ -52,7 +52,7 @@ const nonAccessorySurplusOrdersQueryOpt = {
   },
 };
 
-const nonAccessoryExpenseQueryOpt = {
+const expenseQueryOpt = {
   fields: ["amount", "expense_date"],
   filters: {
     direction: {
@@ -66,21 +66,21 @@ const nonAccessoryExpenseQueryOpt = {
   },
 };
 
-const accessoryExpenseQueryOpt = {
-  fields: ["amount", "expense_date"],
-  filters: {
-    direction: {
-      id: {
-        $in: accessoryExpenseIds,
-      },
-    },
-    isActive: {
-      $eq: true,
-    },
-  },
-};
+// const accessoryExpenseQueryOpt = {
+//   fields: ["amount", "expense_date"],
+//   filters: {
+//     direction: {
+//       id: {
+//         $in: accessoryExpenseIds,
+//       },
+//     },
+//     isActive: {
+//       $eq: true,
+//     },
+//   },
+// };
 
-const nonAccessoryCustomersQueryOpt = {
+const customersQueryOpt = {
   fields: ["id"],
   filters: {
     isActive: {
@@ -92,10 +92,10 @@ const nonAccessoryCustomersQueryOpt = {
 module.exports = {
   accessoryExpenseIds,
   accessoryCategoryIds,
-  accessoryOrdersQueryOpt,
-  accessoryExpenseQueryOpt,
-  nonAccessoryOrdersQueryOpt,
-  nonAccessoryExpenseQueryOpt,
-  nonAccessoryCustomersQueryOpt,
-  nonAccessorySurplusOrdersQueryOpt,
+  // accessoryOrdersQueryOpt,
+  // accessoryExpenseQueryOpt,
+  ordersQueryOpt,
+  expenseQueryOpt,
+  customersQueryOpt,
+  surplusOrdersQueryOpt,
 };
