@@ -2,10 +2,10 @@
 const _ = require("lodash");
 
 const {
-  nonAccessoryExpenseQueryOpt,
-  nonAccessoryCustomersQueryOpt,
-  nonAccessoryOrdersQueryOpt,
-  nonAccessorySurplusOrdersQueryOpt,
+  expenseQueryOpt,
+  customersQueryOpt,
+  ordersQueryOpt,
+  surplusOrdersQueryOpt,
   accessoryOrdersQueryOpt,
   accessoryExpenseQueryOpt,
 } = require("../utils/constants");
@@ -17,8 +17,8 @@ module.exports = () => ({
       const nonAccessoryOrders = await strapi.entityService.findMany(
         "api::order.order",
         {
-          filters: nonAccessoryOrdersQueryOpt.filters,
-          fields: nonAccessoryOrdersQueryOpt.fields,
+          filters: ordersQueryOpt.filters,
+          fields: ordersQueryOpt.fields,
         }
       );
 
@@ -33,8 +33,8 @@ module.exports = () => ({
       const nonAccessoryExpenses = await strapi.entityService.findMany(
         "api::expense.expense",
         {
-          filters: nonAccessoryExpenseQueryOpt.filters,
-          fields: nonAccessoryExpenseQueryOpt.fields,
+          filters: expenseQueryOpt.filters,
+          fields: expenseQueryOpt.fields,
         }
       );
 
@@ -49,8 +49,8 @@ module.exports = () => ({
       const nonAccessoryCustomers = await strapi.entityService.findMany(
         "api::customer.customer",
         {
-          filters: nonAccessoryCustomersQueryOpt.filters,
-          fields: nonAccessoryCustomersQueryOpt.fields,
+          filters: customersQueryOpt.filters,
+          fields: customersQueryOpt.fields,
         }
       );
 
@@ -73,8 +73,8 @@ module.exports = () => ({
       const nonAccessorySurplusOrders = await strapi.entityService.findMany(
         "api::order.order",
         {
-          filters: nonAccessorySurplusOrdersQueryOpt.filters,
-          fields: nonAccessorySurplusOrdersQueryOpt.fields,
+          filters: surplusOrdersQueryOpt.filters,
+          fields: surplusOrdersQueryOpt.fields,
         }
       );
       const surplus = nonAccessorySurplusOrders.reduce((acc, el) => {

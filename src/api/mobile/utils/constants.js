@@ -5,6 +5,7 @@ const customersLightDataProps = {
     },
   },
   fields: ["id"],
+  sort: ["createdAt:desc"],
 };
 
 module.exports = { customersLightDataProps };

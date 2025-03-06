@@ -6,8 +6,8 @@ const { customersLightDataProps } = require("../utils/constants");
 module.exports = () => ({
   async getCustomersLightData(query) {
     try {
-      const { pageSize = 5, page = 1 } = query;
-      const { populate, fields } = customersLightDataProps;
+      const { pageSize = 5, page = 1, orderBy } = query;
+      const { populate, fields, sort } = customersLightDataProps;
 
       const customers = await strapi.entityService.findPage(
         "api::customer.customer",
@@ -16,6 +16,7 @@ module.exports = () => ({
           fields,
           page,
           pageSize,
+          sort: orderBy ? [orderBy] : sort,
         }
       );
 
