@@ -27,5 +27,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/mobile/orders",
+      handler: "orders.getOrdersData",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

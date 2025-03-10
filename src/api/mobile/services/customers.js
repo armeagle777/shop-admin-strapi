@@ -5,6 +5,7 @@ const {
   customersLightDataProps,
   customersDataProps,
 } = require("../utils/constants");
+const { formatSearchCustomersFilters } = require("../utils/helpers");
 
 module.exports = () => ({
   async getCustomersLightData(query) {
@@ -31,8 +32,13 @@ module.exports = () => ({
   },
   async getCustomersData(query) {
     try {
-      const { pageSize = 5, page = 1, orderBy } = query;
+      const { pageSize = 5, page = 1, orderBy, searchQuery } = query;
       const { populate, fields, sort } = customersDataProps;
+
+      const trimedSearchString = searchQuery?.trim();
+      const words = trimedSearchString?.split(/\s+/);
+
+      const filters = formatSearchCustomersFilters(words, trimedSearchString);
 
       const customers = await strapi.entityService.findPage(
         "api::customer.customer",
@@ -41,6 +47,7 @@ module.exports = () => ({
           fields,
           page,
           pageSize,
+          filters,
           sort: orderBy ? [orderBy] : sort,
         }
       );
