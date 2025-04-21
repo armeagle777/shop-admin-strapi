@@ -94,6 +94,9 @@
     },
     "order_date": {
       "type": "date"
+    },
+    "comment": {
+      "type": "string"
     }
   }
 }

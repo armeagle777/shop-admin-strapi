@@ -162,7 +162,14 @@ const formatSearchCustomersFilters = (words, trimedSearchString) => {
   }
 };
 
+const formatOrdersFilters = ({ status }) => {
+  return {
+    status: status || "ORDERED",
+  };
+};
+
 module.exports = {
+  formatOrdersFilters,
   getCurrentYearAndPast11Months,
   formatSearchCustomersFilters,
 };
