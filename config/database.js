@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 
 module.exports = ({ env }) => {
-  const client = env("DATABASE_CLIENT", "sqlite");
+  const client = env("DATABASE_CLIENT", "postgres");
 
   const connections = {
     mysql: {

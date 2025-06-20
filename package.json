@@ -9,7 +9,6 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-i18n": "~4.10.7",
     "@strapi/plugin-users-permissions": "~4.10.7",
@@ -24,6 +23,7 @@
     "lodash": "^4.17.21",
     "mysql2": "^3.3.3",
     "patch-package": "^7.0.0",
+    "pg": "^8.16.2",
     "react-icons": "^4.9.0",
     "strapi-plugin-duplicate-button": "^1.1.11",
     "strapi-plugin-transformer": "^3.1.2"
