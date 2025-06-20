@@ -23,11 +23,14 @@ module.exports = createCoreController(
           phone_number: phone_code + phone.number,
         };
 
-        const existingCustomer = await strapi.documents("api::customer.customer").findMany({
-          filters: {
-            phone_number: phone_code + phone.number,
-          },
-        });
+        const existingCustomer = await strapi.entityService.findMany(
+          "api::customer.customer",
+          {
+            filters: {
+              phone_number: phone_code + phone.number,
+            },
+          }
+        );
 
         if (existingCustomer.length > 0) {
           return ctx.send({
@@ -42,7 +45,7 @@ module.exports = createCoreController(
           const createdContacts = await Promise.all(
             contacts.map(
               async (c) =>
-                await strapi.documents("api::contact.contact").create({
+                await strapi.entityService.create("api::contact.contact", {
                   data: { phone_number: c.phone_number },
                 })
             )
@@ -68,7 +71,7 @@ module.exports = createCoreController(
                 newAddressData.settlement = +settlementId;
               }
 
-              return await strapi.documents("api::address.address").create({
+              return await strapi.entityService.create("api::address.address", {
                 data: newAddressData,
               });
             })
@@ -79,11 +82,14 @@ module.exports = createCoreController(
           };
         }
 
-        const createdCustomer = await strapi.documents("api::customer.customer").create({
-          data: {
-            ...newCustomerData,
-          },
-        });
+        const createdCustomer = await strapi.entityService.create(
+          "api::customer.customer",
+          {
+            data: {
+              ...newCustomerData,
+            },
+          }
+        );
         ctx.send(createdCustomer);
       } catch (error) {
         console.log("error::::::>>", error.message);
@@ -112,9 +118,11 @@ module.exports = createCoreController(
           phone_number: phone_code + phone_number,
         };
 
-        const existingCustomer = await strapi.documents("api::customer.customer").findOne({
-          documentId: "__TODO__"
-        });
+        const existingCustomer = await strapi.entityService.findOne(
+          "api::customer.customer",
+          +params.customerId,
+          {}
+        );
 
         if (!existingCustomer) {
           return ctx.send({
@@ -132,7 +140,7 @@ module.exports = createCoreController(
           const createdContacts = await Promise.all(
             contacts.map(
               async (c) =>
-                await strapi.documents("api::contact.contact").create({
+                await strapi.entityService.create("api::contact.contact", {
                   data: { phone_number: c.phone_number },
                 })
             )
@@ -157,22 +165,26 @@ module.exports = createCoreController(
             newAddressData.settlement = +settlementId;
           }
 
-          await strapi.documents("api::address.address").update({
-            documentId: "__TODO__",
-
-            data: {
-              ...newAddressData,
+          await strapi.entityService.update(
+            "api::address.address",
+            address_id,
+            {
+              data: {
+                ...newAddressData,
+              },
             }
-          });
+          );
         }
 
-        const updatedCustomer = await strapi.documents("api::customer.customer").update({
-          documentId: "__TODO__",
-
-          data: {
-            ...newCustomerData,
+        const updatedCustomer = await strapi.entityService.update(
+          "api::customer.customer",
+          +params.customerId,
+          {
+            data: {
+              ...newCustomerData,
+            },
           }
-        });
+        );
         ctx.send(updatedCustomer);
       } catch (error) {
         console.log("error::::::<<<", error.message);
