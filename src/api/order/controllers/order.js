@@ -29,11 +29,14 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       }
       newOrder.status = "AVAILABLE";
 
-      const createdOrder = await strapi.documents("api::order.order").create({
-        data: {
-          ...newOrder,
-        },
-      });
+      const createdOrder = await strapi.entityService.create(
+        "api::order.order",
+        {
+          data: {
+            ...newOrder,
+          },
+        }
+      );
 
       const updateObj = {
         status: newStatus,
@@ -45,9 +48,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         updateObj.return_date = currentDate;
       }
 
-      await strapi.documents("api::order.order").update({
-        documentId: "__TODO__",
-        data: updateObj
+      await strapi.entityService.update("api::order.order", key, {
+        data: updateObj,
       });
       ctx.send(createdOrder);
     } catch (error) {

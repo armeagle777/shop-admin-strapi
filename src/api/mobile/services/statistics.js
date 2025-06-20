@@ -14,7 +14,7 @@ const {
 module.exports = () => ({
   async getHomepagePillsStatsData(query) {
     try {
-      const orders = await strapi.documents("api::order.order").findMany({
+      const orders = await strapi.entityService.findMany("api::order.order", {
         filters: ordersQueryOpt.filters,
         fields: ordersQueryOpt.fields,
       });
@@ -27,10 +27,13 @@ module.exports = () => ({
       //   }
       // );
 
-      const expenses = await strapi.documents("api::expense.expense").findMany({
-        filters: expenseQueryOpt.filters,
-        fields: expenseQueryOpt.fields,
-      });
+      const expenses = await strapi.entityService.findMany(
+        "api::expense.expense",
+        {
+          filters: expenseQueryOpt.filters,
+          fields: expenseQueryOpt.fields,
+        }
+      );
 
       // const accessoryExpenses = await strapi.entityService.findMany(
       //   "api::expense.expense",
@@ -40,10 +43,13 @@ module.exports = () => ({
       //   }
       // );
 
-      const customers = await strapi.documents("api::customer.customer").findMany({
-        filters: customersQueryOpt.filters,
-        fields: customersQueryOpt.fields,
-      });
+      const customers = await strapi.entityService.findMany(
+        "api::customer.customer",
+        {
+          filters: customersQueryOpt.filters,
+          fields: customersQueryOpt.fields,
+        }
+      );
 
       const charData = getCurrentYearAndPast11Months(expenses, orders);
 
@@ -54,10 +60,13 @@ module.exports = () => ({
 
       const meanIncome = _.mean(charData.netIncomes);
 
-      const surplusOrders = await strapi.documents("api::order.order").findMany({
-        filters: surplusOrdersQueryOpt.filters,
-        fields: surplusOrdersQueryOpt.fields,
-      });
+      const surplusOrders = await strapi.entityService.findMany(
+        "api::order.order",
+        {
+          filters: surplusOrdersQueryOpt.filters,
+          fields: surplusOrdersQueryOpt.fields,
+        }
+      );
       const surplus = surplusOrders.reduce((acc, el) => {
         acc += el.net_cost;
         return acc;
