@@ -16,7 +16,6 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  // upload: {},
   email: {
     config: {
       provider: "nodemailer",
