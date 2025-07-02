@@ -16,7 +16,6 @@
     "@strapi/provider-email-nodemailer": "^4.11.0",
     "@strapi/provider-upload-cloudinary": "^4.11.0",
     "@strapi/strapi": "~4.10.7",
-    "better-sqlite3": "^8.0.1",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "dayjs": "^1.11.10",
