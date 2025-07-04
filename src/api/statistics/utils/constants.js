@@ -1,5 +1,7 @@
-const accessoryExpenseIds = [32, 39];
-const accessoryCategoryIds = [74];
+// const accessoryExpenseIds = [32, 39]; // Old
+const accessoryExpenseIds = [6, 13];
+// const accessoryCategoryIds = [74]; //Old
+const accessoryCategoryIds = [16];
 
 const ordersQueryOpt = {
   fields: ["status", "net_cost", "selling_price", "order_date"],
